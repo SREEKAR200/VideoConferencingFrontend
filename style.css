@@ -1,153 +1,195 @@
-:root {
-    --primary: #1565c0;
-    --secondary: #e91e63;
-    --background: #f2f7fb;
-    --card: #fff;
-    --input: #f7fafc;
-    --border: #a1b7e2;
-    --text: #222;
-    --button-gradient: linear-gradient(90deg, #2196f3 60%, #e91e63 110%);
-}
-body.dark {
-    --primary: #90caf9;
-    --secondary: #f06292;
-    --background: #181c21;
-    --card: #222b37;
-    --input: #232833;
-    --border: #394f65;
-    --text: #f2f7fb;
-    --button-gradient: linear-gradient(90deg, #1e293b 60%, #ad1457 110%);
-}
-
+/* ------- General Layout ------- */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--background);
-    color: var(--text);
     margin: 0;
     padding: 0;
-    transition: all 0.4s;
-}
-
-.toggle-dark {
-    position: absolute;
-    right: 24px;
-    top: 24px;
-    background: var(--button-gradient);
-    color: #fff;
-    border-radius: 32px;
-    border: none;
-    padding: 8px 22px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: 0 2px 12px #0002;
-    z-index: 10;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    color: #e8eaed;
+    min-height: 100vh;
+    transition: background 0.7s;
 }
 
 h2 {
-    margin-top: 32px;
     text-align: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    font-weight: 700;
-    color: var(--primary);
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #01fcef;
+    text-shadow: 0 3px 12px #00ffea99;
 }
 
-#videoSection {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 28px;
-    margin-bottom: 14px;
+.toggle-dark {
+    position: fixed;
+    top: 16px;
+    right: 22px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: none;
+    background: #222d36;
+    color: #f2bfff;
+    font-size: 1.1em;
+    box-shadow: 0 2px 9px #272727ba;
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+    transition: background 0.45s;
 }
 
+.toggle-dark:hover {
+    background: #3d235a;
+    color: #ffd943;
+}
+
+body.dark {
+    background: linear-gradient(135deg, #0f2027, #2c5364);
+    color: #fafafb;
+}
+
+/* -------- Video Containers -------- */
 video {
-    width: 350px;
-    height: 220px;
-    background: #222;
-    border-radius: 14px;
-    box-shadow: 0 2px 28px #212b3644;
-    margin: 12px 0;
-    border: 3px solid var(--primary);
-    transition: border 0.2s;
+    border-radius: 15px;
+    box-shadow: 0 0 18px #18baffb2;
+    margin: 6px;
+    border: 3px solid #46e0ff;
+    background: #111318;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-#peerVideo { border: 3px solid var(--secondary); }
-
-.section {
-    background: var(--card);
-    border-radius: 13px;
-    box-shadow: 0 2px 18px #cfd8dc33;
-    max-width: 740px;
-    margin: 24px auto 12px auto;
-    padding: 28px 32px 20px 32px;
+#localVideo {
+    border-color: #2196f3;
+    box-shadow: 0 0 20px #2196f3a0;
 }
 
-label {
-    font-weight: 600;
-    margin-right: 10px;
-    color: var(--primary);
+#peerVideo {
+    border-color: #e91e63;
+    box-shadow: 0 0 20px #e91e63a0;
 }
 
-select, input[type="file"], input[type="text"] {
-    border: 1.2px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 10px;
-    margin-right: 15px;
-    background: var(--input);
-    color: var(--text);
-    margin-bottom: 8px;
+/* -------- Video Avatars: simple pulsating animation -------- */
+#localAvatar, #peerAvatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(45deg,#38d7fa,#a1eaff);
+    display: inline-block;
+    margin-right: 12px;
+    box-shadow: 0 2px 12px #38d7fa70;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    animation: pulseAvatar 2s infinite;
+}
+#peerAvatar {
+    background: linear-gradient(45deg,#f845a1,#ffd743);
+    left: 380px;
 }
 
-input[type="text"], input[type="file"] {
-    font-size: 15px;
-    width: 200px;
+@keyframes pulseAvatar {
+    0% { box-shadow: 0 0 4px #33eaff44; }
+    50% { box-shadow: 0 0 24px #01fcef66; transform: scale(1.1);}
+    100%{ box-shadow: 0 0 4px #33eaff44;}
+}
+
+/* -------- PeerJS / Button Controls -------- */
+input, select, button {
+    font-size: 1em;
+    padding: 8px;
+    border-radius: 7px;
+    border: none;
+    margin: 4px 0;
+    background: #171c23;
+    color: #f4eeff;
+    box-shadow: 0 1px 6px #33373bb0;
+    transition: background 0.2s, color 0.2s;
 }
 
 button {
-    padding: 7px 19px;
-    border-radius: 8px;
-    background: var(--button-gradient);
+    background: linear-gradient(90deg, #ff5189, #47e9f9 120%);
     color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.60px;
+    font-weight: bolder;
     border: none;
     cursor: pointer;
-    box-shadow: 0 2px 8px #1565c033;
-    margin-right: 8px;
-    margin-bottom: 4px;
-    transition: background 0.15s;
+    box-shadow: 0 2px 8px #404b63a0;
+    margin-top: 6px;
 }
 
 button:hover {
-    background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 110%);
+    background: linear-gradient(90deg, #47e9f9, #ff5189 120%);
+    color: #ffd240;
 }
 
+/* Audio file + language controls */
+label {
+    margin-right: 6px;
+    color: #aefcff;
+    font-weight: bold;
+}
+
+/* -------- Transcript and Subtitle -------- */
 #result {
-    max-width: 675px;
-    margin: 26px auto 0 auto;
-    background: var(--card);
-    border-radius: 15px;
-    padding: 26px 24px 24px 24px;
-    box-shadow: 0 0 32px #2196f344;
-    transition: background 0.4s;
+    margin: 28px auto;
+    max-width: 680px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: #182038e0;
+    box-shadow: 0 4px 16px #38d7fa44;
+    position: relative;
 }
 
-h3 {
-    color: var(--primary);
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 0;
-}
-
-pre {
-    background: var(--input);
+/* Live subtitle - glowing animation */
+#subtitle {
+    font-size: 2.3em;
+    color: #ffee58;
+    font-weight: bold;
+    background: linear-gradient(90deg,#19191b,#232a18);
+    box-shadow: 0 4px 18px #ffee5840;
+    padding: 8px 18px;
     border-radius: 9px;
-    padding: 15px 9px;
-    font-size: 16px;
-    box-shadow: 0 0 6px #cfd8dc99;
+    margin-bottom: 14px;
+    animation: glowSubtitle 2s infinite;
+    min-height: 42px;
+}
+
+@keyframes glowSubtitle {
+    0% { box-shadow: 0 4px 18px #ffee58c2; color:#ffee58;}
+    50%{ box-shadow: 0 2px 38px #ffee5806; color:#ffe9ec;}
+    100%{ box-shadow: 0 4px 18px #ffee58c2; color:#ffee58;}
+}
+
+/* Full transcript area */
+#transcript {
+    background: #212321de;
+    color: #8be9fd;
+    font-size: 1.09em;
+    padding: 16px;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 1.5px 8px #a1eaff32;
     white-space: pre-wrap;
-    word-break: break-all;
-    color: var(--text);
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    letter-spacing: 1px;
+}
+
+/* -------- Responsive for mobile -------- */
+@media (max-width: 800px) {
+    body { padding:4px;}
+    h2 { font-size:1.3em;}
+    video { width:180px !important; height:120px !important;}
+    #result { max-width:99vw;}
+    #transcript { font-size:1em;}
+    #subtitle { font-size:1.2em; }
+    #localAvatar, #peerAvatar { left:17px; width:32px;height:32px;}
+    #peerAvatar{ left:230px;}
+}
+
+/* -------- Custom Scrollbar -------- */
+#transcript::-webkit-scrollbar {
+    width: 7px;
+    background:#212c39;
+    border-radius: 7px;
+}
+#transcript::-webkit-scrollbar-thumb {
+    background: #47e9f9;
+    border-radius: 7px;
 }
