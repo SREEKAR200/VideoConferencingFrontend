@@ -1,0 +1,153 @@
+:root {
+    --primary: #1565c0;
+    --secondary: #e91e63;
+    --background: #f2f7fb;
+    --card: #fff;
+    --input: #f7fafc;
+    --border: #a1b7e2;
+    --text: #222;
+    --button-gradient: linear-gradient(90deg, #2196f3 60%, #e91e63 110%);
+}
+body.dark {
+    --primary: #90caf9;
+    --secondary: #f06292;
+    --background: #181c21;
+    --card: #222b37;
+    --input: #232833;
+    --border: #394f65;
+    --text: #f2f7fb;
+    --button-gradient: linear-gradient(90deg, #1e293b 60%, #ad1457 110%);
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    transition: all 0.4s;
+}
+
+.toggle-dark {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    background: var(--button-gradient);
+    color: #fff;
+    border-radius: 32px;
+    border: none;
+    padding: 8px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 12px #0002;
+    z-index: 10;
+}
+
+h2 {
+    margin-top: 32px;
+    text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+#videoSection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 28px;
+    margin-bottom: 14px;
+}
+
+video {
+    width: 350px;
+    height: 220px;
+    background: #222;
+    border-radius: 14px;
+    box-shadow: 0 2px 28px #212b3644;
+    margin: 12px 0;
+    border: 3px solid var(--primary);
+    transition: border 0.2s;
+}
+
+#peerVideo { border: 3px solid var(--secondary); }
+
+.section {
+    background: var(--card);
+    border-radius: 13px;
+    box-shadow: 0 2px 18px #cfd8dc33;
+    max-width: 740px;
+    margin: 24px auto 12px auto;
+    padding: 28px 32px 20px 32px;
+}
+
+label {
+    font-weight: 600;
+    margin-right: 10px;
+    color: var(--primary);
+}
+
+select, input[type="file"], input[type="text"] {
+    border: 1.2px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-right: 15px;
+    background: var(--input);
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+input[type="text"], input[type="file"] {
+    font-size: 15px;
+    width: 200px;
+}
+
+button {
+    padding: 7px 19px;
+    border-radius: 8px;
+    background: var(--button-gradient);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.60px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #1565c033;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    transition: background 0.15s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 110%);
+}
+
+#result {
+    max-width: 675px;
+    margin: 26px auto 0 auto;
+    background: var(--card);
+    border-radius: 15px;
+    padding: 26px 24px 24px 24px;
+    box-shadow: 0 0 32px #2196f344;
+    transition: background 0.4s;
+}
+
+h3 {
+    color: var(--primary);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+pre {
+    background: var(--input);
+    border-radius: 9px;
+    padding: 15px 9px;
+    font-size: 16px;
+    box-shadow: 0 0 6px #cfd8dc99;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text);
+}
